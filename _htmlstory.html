@@ -7,7 +7,7 @@
  #}
 {% block content %}
 <section class='stats'>
-	{% for stat in stats_control[1:] if stat.display|int == 1%}
+	{% for stat in stats_control[1:]|sort(attribute="display_order") if stat.display and stat.display|int == 1%}
 		{% set s = stat %}
 		{% include "subtemplates/_stat.html" %}
 	{% endfor %}
