@@ -57,7 +57,7 @@
 // ---------------------------------------
 
 %barcode-bar{
-	background: rgba($barcode_bar_color, .1);
+	background: rgba($barcode_bar_color, $barcode_bar_color_opacity);
 	width: $barcode_bar_width;
 	height: $barcode_bar_height;
 
