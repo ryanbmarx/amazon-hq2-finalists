@@ -7,13 +7,6 @@
 // ---------------------------------------
 
 .trb_mainContent .stat{
-	box-sizing:border-box;
-
-	margin-bottom: $grid-gap;
-	padding-bottom: $grid-gap;
-	border-bottom: 1px solid $trib-gray4;
-
-
 	display:flex;
 	justify-content: space-between;
 	align-items: center;
@@ -23,6 +16,7 @@
 	margin: 0 0 $grid-gap 0;
 	padding: 0 0 $grid-gap 0;
 	border-bottom: 1px solid $trib-gray4;
+	box-sizing:border-box;
 	
 	&__label{
 		// @include sans-serif();
@@ -90,14 +84,14 @@
 @media all and (min-width: $desktop-min-width){
 	.trb_mainContent  .stat{ 
 		text-align: left;
-		margin:0; 
+		// margin:0; 
 	}
 
 	.trb_mainContent  .stat{
 		flex-wrap: nowrap;
 
 		&__label{
-			flex-basis: 150px;
+			flex-basis: 200px;
 			margin: 0 #{$grid-gap} 0 0;
 		}
 
