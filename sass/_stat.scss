@@ -75,8 +75,6 @@
 
 	.stat__bar{
 		@extend %barcode-bar;
-
-		&[data-geo="chi"]{ background: $barcode_bar_color_chicago }
 	}
 }
 

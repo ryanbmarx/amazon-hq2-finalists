@@ -1,5 +1,5 @@
 // ---------------------------------------
-// CHICAGO LABEL
+// HIGHLIGHT LABEL (FORMERLY CHI LABELING)
 // ---------------------------------------
 
 %triangle{
@@ -23,10 +23,11 @@
 .chi-label{
 	@include sans-serif-text(14px, 1.3em, bold);
 	transform: translate(#{$barcode_bar_width * -1}, 0); // *Centers-ish* the pointer over the bar (bars are translated, too)
-
+	display:none;
 	position:absolute;
 	bottom: $barcode_bar_height;
-
+	min-width: 100px;
+	
 	&__kicker{
 		display:block;
 		margin: 0;
@@ -51,6 +52,26 @@
 		margin: 0 #{$barcode_bar_width / 2} 0 auto;
 	}
 
+}
+
+
+// ---------------------------------------
+// ONLY SHOWING THE CURRENTLY SELECTED BID
+// ---------------------------------------
+
+// <section class='stats' data-now-showing="chi">
+
+@each $bid in $bids{
+	.stats[data-now-showing="#{ $bid }"]{
+		.chi-label--#{$bid}{
+			display:block;
+		}
+
+		.stat__bars .stat__bar[data-geo="#{ $bid }"]{
+			background: $barcode_bar_color_highlight;
+			z-index: 10;
+		}
+	}
 }
 
 // ---------------------------------------

@@ -5,8 +5,8 @@
 	{% else %}
 		{% set label_add_class = "" %}
 	{% endif %}
-	<div class='chi-label {{ label_add_class }}' style="margin-left: {{ label_position_percentage }}%">
-		<span class="chi-label__kicker">Chicago</span>
+	<div class='chi-label chi-label--{{ c.id|lower }} {{ label_add_class }}' style="margin-left: {{ label_position_percentage }}%">
+		<span class="chi-label__kicker">{{ c.label }}</span>
 		<span class="chi-label__number">{{ c[demo.slug]|format_number(demo.format_string) }}</span>
 		<span class="chi-label__pointer"></span>
 	</div>
@@ -43,9 +43,7 @@
  		<div class='stat__bars'>
 			{% for b in stats %}
 				{% set label_position_percentage = (b[s.slug] - summary_statistics.min) / (summary_statistics.max - summary_statistics.min) * 100 %}
-				{% if b.id|upper == "CHI" %}
-					{{ add_chicago_label(b, s, label_position_percentage) }}
-				{% endif %}
+				{{ add_chicago_label(b, s, label_position_percentage) }}
 	
 				<div class='stat__bar' data-geo="{{ b.id|lower }}"
 				style='left: {{ label_position_percentage }}%'>

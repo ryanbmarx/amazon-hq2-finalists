@@ -10,8 +10,13 @@
   <section class='intro'>
     {{ intro|markdown }}
   </section>
-  <section class='stats'>
+  <section class='stats' data-now-showing="chi">
     <h2 class='subhead'>{{ subhead|process_text }}</h2>
+    <select id='highlight'>
+      {% for city in stats|sort(attribute="label") %}
+          <option {% if city.id|lower == "chi" %} selected {% endif %} value="{{ city.id|lower }}">{{ city.label }}</option>
+      {% endfor %}
+    </select>
   	{% for stat in stats_control[1:]|sort(attribute="display_order") if stat.display and stat.display|int == 1%}
   		{% set s = stat %}
   		{% include "subtemplates/_stat.html" %}
@@ -32,7 +37,7 @@
 
 {% block scripts %}
 {# Uncomment this if you are using custom JavaScript #}
-{# <script src="//{{ ROOT_URL }}/js/app.min.js"></script> #}
+<script src="//{{ ROOT_URL }}/js/app.min.js"></script>
 <script>
 (function(document) {
   var CSS = [

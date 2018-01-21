@@ -8,7 +8,7 @@ $tablet-min-width:450px;
 
 // BARCODES
 $barcode_bar_color: $trib-blue3;
-$barcode_bar_color_chicago: $trib-blue1;
+$barcode_bar_color_highlight: $trib-blue1;
 $barcode_bar_color_opacity: .4;
 $barcode_bar_width: 8px;
 $barcode_bar_height: $grid-gap * 2;
@@ -16,6 +16,30 @@ $barcode_bar_height: $grid-gap * 2;
 
 // BARCODE BOTTOM LABELS
 $label-pointer-height: 5px;
+
+$bids:(
+	"nyc",
+	"new",
+	"mc",
+	"nv",
+	"dc",
+	"bos",
+	"chi",
+	"phi",
+	"pit",
+	"la",
+	"den",
+	"mia",
+	"atl",
+	"aus",
+	"col",
+	"ral",
+	"nas",
+	"dal",
+	"ind",
+	"tor"
+);
+
 
 // MIXINS
 @import 'base-mixins';
@@ -43,6 +67,13 @@ $label-pointer-height: 5px;
 
 .trb_mainContent {
 	
+	#highlight{
+		width: 100%;
+		max-width: 320px;
+		margin: 0 0 $grid-gap 0;
+
+	}
+
 	.graphic-wrapper{
 		max-width: 650px;
 		margin: 0 auto;
