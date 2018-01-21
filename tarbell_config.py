@@ -23,7 +23,6 @@ blueprint = Blueprint('amazon-hq2-finalists', __name__)
 @blueprint.app_template_filter('get_summary_stats')
 def get_summary_stats(data, k, zero_out):
 	# k is for the desired key
-	print data
 
 	retval={}
 	data_list = []
