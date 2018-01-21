@@ -25,7 +25,7 @@
 	transform: translate(#{$barcode_bar_width * -1}, 0); // *Centers-ish* the pointer over the bar (bars are translated, too)
 
 	position:absolute;
-	bottom: $barcode_bar_height + 5px;
+	bottom: $barcode_bar_height;
 
 	&__kicker{
 		display:block;
@@ -35,15 +35,10 @@
 		font-size: 18px;
 		display:block;
 		// padding-bottom: $label-pointer-height;
-		margin: 0;
+		margin: 0 0 3px 0;
 	}
 	&__pointer{
 		@extend %triangle--down;
-		// display:block;
-		// width: $barcode_bar_width;
-		// height: $barcode_bar_width;
-		// background: transparent url(../img/triangle-down.svg) center center;
-		// background-size:cover;
 		margin: 0 auto 0 #{$barcode_bar_width / 2}
 	}
 }
@@ -100,7 +95,7 @@
 		text-align:center;
 		transform:translate(-50%, 0);
 		padding: 0;
-		
+
 		.label__median-pointer{
 			@extend %triangle--up;
 			margin: 0 auto;
