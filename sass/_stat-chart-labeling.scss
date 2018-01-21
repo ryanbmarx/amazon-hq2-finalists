@@ -2,6 +2,23 @@
 // CHICAGO LABEL
 // ---------------------------------------
 
+%triangle{
+	display:block;
+	width: $barcode_bar_width;
+	height: $barcode_bar_width;	
+	background-size:cover;
+}
+
+%triangle--up{
+	@extend %triangle;
+	background: transparent url(../img/triangle-up.svg) center center;
+}
+
+%triangle--down{
+	@extend %triangle;	
+	background: transparent url(../img/triangle-down.svg) center center;
+
+}
 
 .chi-label{
 	@include sans-serif-text(14px, 1.3em, bold);
@@ -21,11 +38,12 @@
 		margin: 0;
 	}
 	&__pointer{
-		display:block;
-		width: $barcode_bar_width;
-		height: $barcode_bar_width;
-		background: transparent url(../img/triangle-down.svg) center center;
-		background-size:cover;
+		@extend %triangle--down;
+		// display:block;
+		// width: $barcode_bar_width;
+		// height: $barcode_bar_width;
+		// background: transparent url(../img/triangle-down.svg) center center;
+		// background-size:cover;
 		margin: 0 auto 0 #{$barcode_bar_width / 2}
 	}
 }
@@ -49,7 +67,6 @@
 	display:flex; // To easily push the min and max labels to the edges
 	justify-content:space-between;
 	flex-wrap: nowrap;
-	margin-top: 3px; // Give the pointers a little room to breathe.
 	position: relative
 }
 
@@ -65,7 +82,7 @@
 
 .label{
 	@include agate();	
-	padding-top:$label-pointer-height;
+	padding-top:$barcode_bar_width;
 	position:relative;
 
 	&--area{
@@ -82,10 +99,17 @@
 		top:0;
 		text-align:center;
 		transform:translate(-50%, 0);
-
-		&:before{
-			@extend %label-pointer;
-			left:50%; // This centers the pointer over the text
+		padding: 0;
+		
+		.label__median-pointer{
+			@extend %triangle--up;
+			margin: 0 auto;
 		}
+
+		// &:before{
+		// 	@extend %label-pointer;
+		// 	left:50%; // This centers the pointer over the text
+		// }
 	}
 }
+

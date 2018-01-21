@@ -54,7 +54,10 @@
 		</div> <!-- /stat__bars -->
 		<div class='stat__bottom-labels'>
 			<span class="label label--min">{{ summary_statistics.min|format_number(s.format_string) }}</span>
-			<span class="label label--median" style="left: {{  summary_statistics.median_percentage }}%">Median</span>
+			<span class="label label--median" style="left: {{  summary_statistics.median_percentage }}%">
+				<div class='label__median-pointer'></div>
+				Median
+			</span>
 			<span class="label label--max">{{ summary_statistics.max|format_number(s.format_string) }}</span>
 		</div> {# /BOTTOM LABELS #}
 	</div> {# /BARCODE #}
