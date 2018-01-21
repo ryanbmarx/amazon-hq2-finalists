@@ -4,6 +4,49 @@
 Tarbell project configuration
 """
 
+from flask import Blueprint, g, render_template
+import ftfy
+import jinja2
+# import xlrd
+# from markupsafe import Markup
+# import json
+# import datetime
+
+# For calculating median of demographic data
+from numpy import median
+
+blueprint = Blueprint('amazon-hq2-finalists', __name__)
+
+
+
+
+@blueprint.app_template_filter('get_summary_stats')
+def get_summary_stats(data, k, zero_out):
+	# k is for the desired key
+	print data
+
+	retval={}
+	data_list = []
+	for area in data:
+		data_list.append(area[k])
+
+	retval['median'] = median(data_list)
+	retval['max'] = max(data_list) 
+	retval['min'] = 0 if zero_out else min(data_list)
+	retval['median_percentage'] = (retval['median'] - retval['min']) / (retval['max'] - retval['min']) * 100
+
+	return retval
+
+@blueprint.app_template_filter('format_number')
+def get_stats(num, format_string):
+    if format_string == "int":
+        return "{:,}".format(num)
+    if format_string == "float":    
+        return "{:.1f}".format(num)
+    if format_string == "float":    
+        return "{.1f%}".format(num)
+    return num
+
 # Google spreadsheet key
 SPREADSHEET_KEY = "1qnQOBzwubAedCpuAvLFpEZGYZV2k9v8Pk3wvbYJJ9bU"
 

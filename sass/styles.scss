@@ -1,2 +1,33 @@
 @import 'base-variables';
+// SPACING
+$grid-gap: 30px;
+
+// BREAKPOINTS
+$desktop-min-width:850px;
+$tablet-min-width:450px;
+
+// BARCODES
+$barcode_bar_color: $trib-blue3;
+$barcode_bar_color_chicago: $trib-blue1;
+$barcode_bar_width: 8px;
+$barcode_bar_height: $grid-gap * 2;
+
+
+// BARCODE BOTTOM LABELS
+$label-pointer-height: 5px;
+
+// MIXINS
 @import 'base-mixins';
+
+// PARTIALS
+@import 'stat';
+@import "stat-chart-labeling";
+
+@media all and (min-width: $tablet-min-width){
+	// ONLY CHANGES FOR DESKTOPS
+}
+
+
+@media all and (min-width: $desktop-min-width){
+	// ONLY CHANGES FOR DESKTOPS
+}

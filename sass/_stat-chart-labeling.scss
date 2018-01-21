@@ -1,0 +1,90 @@
+// ---------------------------------------
+// CHICAGO LABEL
+// ---------------------------------------
+
+
+.chi-label{
+	@include sans-serif-text(14px, 1.3em, bold);
+	transform: translate(#{$barcode_bar_width * -1}, 0); // *Centers-ish* the pointer over the bar (bars are translated, too)
+
+	position:absolute;
+	bottom: $barcode_bar_height + 5px;
+
+	&__kicker{
+		display:block;
+		margin: 0;
+	}
+	&__number{
+		font-size: 18px;
+		display:block;
+		padding-bottom: $label-pointer-height;
+		margin: 0;
+
+		&:after{
+			content: "\25BC";
+			font: .8em/1px 'Arial', sans-serif;
+			display:block;
+			margin-top: $label-pointer-height;	
+		}
+	}
+}
+
+.chi-label--text-right{ 
+	text-align:right; 
+	transform:translate(calc(-100% + #{$barcode_bar_width}), 0); // Shifts the label to the left side while scooting it back over the *center* of the bar (like the other labels)
+
+	.chi-label__number:after{
+		left: auto;
+		right: 0;
+	}
+}
+
+// ---------------------------------------
+// BOTTOM LABELING
+// ---------------------------------------
+
+
+.stat__bottom-labels{
+	display:flex; // To easily push the min and max labels to the edges
+	justify-content:space-between;
+	flex-wrap: nowrap;
+	margin-top: 3px; // Give the pointers a little room to breathe.
+	position: relative
+}
+
+%label-pointer{
+	content: "\25B4";
+	font: 24px/#{$label-pointer-height} 'Arial', sans-serif;
+	display:block;
+
+	position:absolute;
+	top:#{$label-pointer-height / -1};
+	transform:translate(-50%, 0);
+}
+
+.label{
+	@include agate();	
+	padding-top:$label-pointer-height;
+	position:relative;
+
+	&--area{
+		@include sans-serif
+	}
+
+	&--min{}
+	&--max{
+		text-align: right;
+	}
+
+	&--median{
+		position:absolute;
+		top:0;
+		text-align:center;
+		transform:translate(-50%, 0);
+
+		&:before{
+			@extend %label-pointer;
+			left:50%; // This centers the pointer over the text
+		}
+	}
+}

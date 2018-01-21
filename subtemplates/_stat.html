@@ -1,0 +1,60 @@
+{% macro add_chicago_label(c, demo, label_position_percentage)%}
+	
+	{% if label_position_percentage > 50 %}
+		{% set label_add_class = "chi-label--text-right" %}
+	{% else %}
+		{% set label_add_class = "" %}
+	{% endif %}
+	<div class='chi-label {{ label_add_class }}' style="margin-left: {{ label_position_percentage }}%">
+		<span class="chi-label__kicker">Chicago</span>
+		<span class="chi-label__number">{{ c[demo.slug]|format_number(demo.format_string) }}</span>
+	</div>
+{% endmacro%}
+
+
+{% if s.zero_out and s.zero_out|int == 1 %}
+	{% set zero = True %}
+{% else %}
+	{% set zero = False %}
+{% endif %}
+
+{# S is the data from stats_control tab #}
+{# SLUG is used to reference a particular statistic #}
+{# ID is used to reference a particular geographic region #}
+{# STATS is the spreadsheet tab with the stats in it #}
+{# SUMMARY_STATISTICS is the variable we create to hold the summary stats #}
+{# B (for barcode bar) is the variable holding the data for each bar #}
+
+{% set summary_statistics = stats|get_summary_stats(s.slug, zero) %}
+	
+	
+<div class='stat stat--{{ s.slug}}'>
+	<div class='stat__label'>
+		<h3 class='stat__label-text'>{{ s.label }}</h3>
+		{% if s.sublabel %}
+			<p class='stat__sublabel-text'>{{ s.sublabel }}</p>
+		{% endif %}
+		{% if s.subsublabel %}
+			<p class='stat__subsublabel-text'>{{ s.subsublabel }}</p>
+		{% endif %}
+	</div> {# /label #}
+	<div class='stat__chart'>
+ 		<div class='stat__bars'>
+			{% for b in stats %}
+				{% set label_position_percentage = (b[s.slug] - summary_statistics.min) / (summary_statistics.max - summary_statistics.min) * 100 %}
+				{% if b.id|upper == "CHI" %}
+					{{ add_chicago_label(b, s, label_position_percentage) }}
+				{% endif %}
+	
+				<div class='stat__bar' data-geo="{{ b.id|lower }}"
+				style='left: {{ label_position_percentage }}%'>
+			</div> <!-- /stat__bar -->
+			{% endfor %}
+		</div> <!-- /stat__bars -->
+		<div class='stat__bottom-labels'>
+			<span class="label label--min">{{ summary_statistics.min|format_number(s.format_string) }}</span>
+			<span class="label label--median" style="left: {{  summary_statistics.median_percentage }}%">Median</span>
+			<span class="label label--max">{{ summary_statistics.max|format_number(s.format_string) }}</span>
+		</div> {# /BOTTOM LABELS #}
+	</div> {# /BARCODE #}
+</div>

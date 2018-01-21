@@ -6,6 +6,13 @@
  #
  #}
 {% block content %}
+<section class='stats'>
+	{% for stat in stats_control[1:] if stat.display|int == 1%}
+		{% set s = stat %}
+		{% include "subtemplates/_stat.html" %}
+	{% endfor %}
+</section>
+
 {% endblock content %}
 
 {% block library_scripts %}
