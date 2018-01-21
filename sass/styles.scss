@@ -19,9 +19,42 @@ $label-pointer-height: 5px;
 // MIXINS
 @import 'base-mixins';
 
+@mixin text_stroke(
+	$text-color:black, 
+	$stroke-color:white, 
+	$stroke-width:1px, 
+	$stroke-opacity:1,
+	$stroke-blur:0){
+	  
+
+  color:$text-color;
+  text-shadow:
+	#{0-$stroke-width} #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),  
+	$stroke-width #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),
+	#{0-$stroke-width} $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity),
+	$stroke-width $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity);
+}
+
+
 // PARTIALS
 @import 'stat';
 @import 'stat-chart-labeling';
+
+.trb_mainContent {
+	
+	.graphic-wrapper{
+		max-width: 650px;
+		margin: 0 auto;
+	}
+
+	.subhead{
+		@include label5();
+	}
+
+	.credits p{
+		@include agate();
+	}
+}
 
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR DESKTOPS
