@@ -17,7 +17,17 @@ from numpy import median
 
 blueprint = Blueprint('amazon-hq2-finalists', __name__)
 
+def human_format(num):
+    """
+    Turns 1,000,000,000 into "1B," and so forth.
+    """
 
+    num = float('{:.3g}'.format(num))
+    magnitude = 0
+    while abs(num) >= 1000:
+        magnitude += 1
+        num /= 1000.0
+    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
 
 @blueprint.app_template_filter('get_summary_stats')
@@ -38,12 +48,14 @@ def get_summary_stats(data, k, zero_out):
 
 @blueprint.app_template_filter('format_number')
 def get_stats(num, format_string):
-    if format_string == "int":
-        return "{:,}".format(num)
+    if format_string == "int" or format_string == "integer":
+        return "{:,}".format(num) if num < 100000 else human_format(num)
     if format_string == "float":    
         return "{:.1f}".format(num)
-    if format_string == "float":    
-        return "{.1f%}".format(num)
+    if format_string == "money":    
+        return "${:,.2f}".format(num)
+    if format_string == "percent" or format_string == "percentage":    
+        return "{0:.1f}%".format(num)
     return num
 
 # Google spreadsheet key
