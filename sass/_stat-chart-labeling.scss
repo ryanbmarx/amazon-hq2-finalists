@@ -17,15 +17,16 @@
 	&__number{
 		font-size: 18px;
 		display:block;
-		padding-bottom: $label-pointer-height;
+		// padding-bottom: $label-pointer-height;
 		margin: 0;
-
-		&:after{
-			content: "\25BC";
-			font: .8em/1px 'Arial', sans-serif;
-			display:block;
-			margin-top: $label-pointer-height;	
-		}
+	}
+	&__pointer{
+		display:block;
+		width: $barcode_bar_width;
+		height: $barcode_bar_width;
+		background: transparent url(../img/triangle-down.svg) center center;
+		background-size:cover;
+		margin: 0 auto 0 #{$barcode_bar_width / 2}
 	}
 }
 
@@ -33,10 +34,10 @@
 	text-align:right; 
 	transform:translate(calc(-100% + #{$barcode_bar_width}), 0); // Shifts the label to the left side while scooting it back over the *center* of the bar (like the other labels)
 
-	.chi-label__number:after{
-		left: auto;
-		right: 0;
+	.chi-label__pointer{
+		margin: 0 #{$barcode_bar_width / 2} 0 auto;
 	}
+
 }
 
 // ---------------------------------------

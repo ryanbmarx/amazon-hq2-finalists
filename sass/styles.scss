@@ -21,7 +21,7 @@ $label-pointer-height: 5px;
 
 // PARTIALS
 @import 'stat';
-@import "stat-chart-labeling";
+@import 'stat-chart-labeling';
 
 @media all and (min-width: $tablet-min-width){
 	// ONLY CHANGES FOR DESKTOPS
