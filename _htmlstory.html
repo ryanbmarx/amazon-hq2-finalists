@@ -6,13 +6,23 @@
  #
  #}
 {% block content %}
-<section class='stats'>
-	{% for stat in stats_control[1:]|sort(attribute="display_order") if stat.display and stat.display|int == 1%}
-		{% set s = stat %}
-		{% include "subtemplates/_stat.html" %}
-	{% endfor %}
-</section>
-
+<div class='graphic-wrapper'>
+  <section class='intro'>
+    {{ intro|markdown }}
+  </section>
+  <section class='stats'>
+    <h2 class='subhead'>{{ subhead|process_text }}</h2>
+  	{% for stat in stats_control[1:]|sort(attribute="display_order") if stat.display and stat.display|int == 1%}
+  		{% set s = stat %}
+  		{% include "subtemplates/_stat.html" %}
+  	{% endfor %}
+  </section>
+  <section class='credits'>
+    {{ note|markdown }}
+    {{ source|markdown }}
+    {{ tag|markdown }}
+  </section>
+</div>
 {% endblock content %}
 
 {% block library_scripts %}
