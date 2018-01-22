@@ -30,33 +30,41 @@
 	
 	
 <div class='stat stat--{{ s.slug}}'>
-	<div class='stat__label'>
-		<h3 class='stat__label-text'>{{ s.label }}</h3>
-		{% if s.sublabel %}
-			<p class='stat__sublabel-text'>{{ s.sublabel }}</p>
-		{% endif %}
-		{% if s.subsublabel %}
-			<p class='stat__subsublabel-text'>{{ s.subsublabel }}</p>
-		{% endif %}
-	</div> {# /label #}
-	<div class='stat__chart'>
- 		<div class='stat__bars'>
-			{% for b in stats %}
-				{% set label_position_percentage = (b[s.slug] - summary_statistics.min) / (summary_statistics.max - summary_statistics.min) * 100 %}
-				{{ add_chicago_label(b, s, label_position_percentage) }}
-	
-				<div class='stat__bar' data-geo="{{ b.id|lower }}"
-				style='left: {{ label_position_percentage }}%'>
-			</div> <!-- /stat__bar -->
-			{% endfor %}
-		</div> <!-- /stat__bars -->
-		<div class='stat__bottom-labels'>
-			<span class="label label--min">{{ summary_statistics.min|format_number(s.format_string) }}</span>
-			<span class="label label--median" style="left: {{  summary_statistics.median_percentage }}%">
-				<div class='label__median-pointer'></div>
-				Median
-			</span>
-			<span class="label label--max">{{ summary_statistics.max|format_number(s.format_string) }}</span>
-		</div> {# /BOTTOM LABELS #}
-	</div> {# /BARCODE #}
+	<div class='stat__inner'>
+		<div class='stat__label'>
+			<h3 class='stat__label-text'>{{ s.label }}</h3>
+			{% if s.sublabel %}
+				<p class='stat__sublabel-text'>{{ s.sublabel }}</p>
+			{% endif %}
+			{% if s.subsublabel %}
+				<p class='stat__subsublabel-text'>{{ s.subsublabel }}</p>
+			{% endif %}
+		</div> {# /label #}
+		<div class='stat__chart'>
+	 		<div class='stat__bars'>
+				{% for b in stats %}
+					{% set label_position_percentage = (b[s.slug] - summary_statistics.min) / (summary_statistics.max - summary_statistics.min) * 100 %}
+					{{ add_chicago_label(b, s, label_position_percentage) }}
+		
+					<div class='stat__bar' data-geo="{{ b.id|lower }}"
+					style='left: {{ label_position_percentage }}%'>
+				</div> <!-- /stat__bar -->
+				{% endfor %}
+			</div> <!-- /stat__bars -->
+			<div class='stat__bottom-labels'>
+				<span class="label label--min">{{ summary_statistics.min|format_number(s.format_string) }}</span>
+				<span class="label label--median" style="left: {{  summary_statistics.median_percentage }}%">
+					<div class='label__median-pointer'></div>
+					Median
+				</span>
+				<span class="label label--max">{{ summary_statistics.max|format_number(s.format_string) }}</span>
+			</div> {# /BOTTOM LABELS #}
+		</div> {# /BARCODE #}
+	</div>
+	{% if s.why_important %}
+	<div class='stat__why-important'>
+		<p class='stat__why-important-label'>{{ why_important_label }}</p>
+		{{ s.why_important|markdown }}
+	</div>
+	{% endif %}
 </div>
