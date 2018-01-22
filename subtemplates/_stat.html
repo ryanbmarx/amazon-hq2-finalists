@@ -63,8 +63,7 @@
 	</div>
 	{% if s.why_important %}
 	<div class='stat__why-important'>
-		<p class='stat__why-important-label'>{{ why_important_label }}</p>
-		{{ s.why_important|markdown }}
+		<p><strong>{{ why_important_label }}:</strong> {{ s.why_important }}</p>
 	</div>
 	{% endif %}
 </div>

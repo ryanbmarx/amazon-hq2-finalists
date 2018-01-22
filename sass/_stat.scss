@@ -55,12 +55,12 @@
 		p{
 			width: auto !important; // Because of stupid NGUX
 		}
-	}
-
-	&__why-important-label{
-		@include sans-serif();
-		font-weight: bold;
-		text-align: center;
+	
+		strong{
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+			text-align: center;
+		}
 	}
 }
 
@@ -114,6 +114,7 @@
 		&__label{
 			flex-basis: 200px;
 			margin: 0 #{$grid-gap} 0 0;
+			text-align: left;
 		}
 
 		&__chart{
