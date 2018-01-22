@@ -69,7 +69,7 @@
 // ---------------------------------------
 
 %barcode-bar{
-	background: rgba($barcode_bar_color, $barcode_bar_color_opacity);
+	background: $barcode_bar_color;
 	width: $barcode_bar_width;
 	height: $barcode_bar_height;
 
@@ -77,6 +77,10 @@
 	top: 0;
 	transform:translate(-50%, 0);
 	transition: background 150ms ease;
+
+	&[data-geo="chi"]{
+		background: $barcode_bar_color_chicago !important; // we want it to be blue, even if it is highlighted.
+	}
 }
 
 .stat__bars{

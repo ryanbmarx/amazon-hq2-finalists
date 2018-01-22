@@ -17,6 +17,7 @@
           <option {% if city.id|lower == "chi" %} selected {% endif %} value="{{ city.id|lower }}">{{ city.label }}</option>
       {% endfor %}
     </select>
+    {% include 'subtemplates/_legend.html' %}
   	{% for stat in stats_control[1:]|sort(attribute="display_order") if stat.display and stat.display|int == 1%}
   		{% set s = stat %}
   		{% include "subtemplates/_stat.html" %}

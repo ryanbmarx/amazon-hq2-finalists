@@ -7,9 +7,11 @@ $desktop-min-width:840px;
 $tablet-min-width:420px;
 
 // BARCODES
-$barcode_bar_color: $trib-blue3;
-$barcode_bar_color_highlight: $trib-blue1;
 $barcode_bar_color_opacity: .4;
+$barcode_bar_color: rgba($trib-blue3, $barcode_bar_color_opacity);
+$barcode_bar_color_highlight: $trib-blue1;
+$barcode_bar_color_chicago: $trib-blue2;
+
 $barcode_bar_width: 8px;
 $barcode_bar_height: $grid-gap * 2;
 
@@ -70,7 +72,9 @@ $bids:(
 	#highlight{
 		width: 100%;
 		max-width: 320px;
-		margin: 0 0 $grid-gap 0;
+		margin: 0 auto $grid-gap auto;
+		display:block;
+		text-align: center;
 
 	}
 
@@ -81,6 +85,29 @@ $bids:(
 
 	.subhead{
 		@include label5();
+		text-align: center;
+	}
+
+	.legend-wrapper{
+		text-align: center;
+	}
+
+	.legend{
+		@include trib-legend();
+		display: inline-block;
+
+		dd { line-height: 1.5em; }
+
+		&__bid{
+			@include trib-legend__box(0);
+			width: $barcode_bar_width;
+			height: $barcode_bar_height / 3;
+			background-color: $barcode_bar_color;
+
+			&--chi{
+				background-color: $barcode_bar_color_chicago;				
+			}
+		}
 	}
 
 	.credits p{
